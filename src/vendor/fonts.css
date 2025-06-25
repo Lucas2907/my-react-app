@@ -1,0 +1,27 @@
+@font-face {
+  font-family: "Jojoba";
+  src: url("../assets/fonts/Jojoba.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Teachers-Medium";
+  src: url("../assets/fonts/Teachers-Medium.ttf") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Teachers-Regular";
+  src: url("../assets/fonts/Teachers-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Teachers-SemiBold";
+  src: url("../assets/fonts/Teachers-SemiBold.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
