@@ -12,7 +12,7 @@
   color: rgb(0, 0, 0);
   font-size: 1.4rem;
   border: none;
-  margin: 25px 0 0;
+  margin: 25px 0 5px;
   padding: 0;
   background-color: aliceblue;
   text-align: center;
@@ -44,8 +44,17 @@
   background-color: #da6fe6;
 }
 
-.form__task__button:active{
+.form__task__button:active {
   background-color: #9a1aa8;
+}
+
+.form__task__button-disabled {
+  cursor: default;
+  background-color: #a9a9a9;
+}
+
+.form__task__button-disabled:hover {
+  background-color: #a9a9a9;
 }
 
 .form__task__image {
@@ -53,11 +62,12 @@
   height: 35px;
 }
 
-input::placeholder {
+.form__input-task::placeholder {
   color: #5f5f5f;
 }
 
 .input__error-visible {
+  font-size: 17px;
   visibility: visible;
   text-align: center;
   font-family: "Teachers-Regular", sans-serif;
