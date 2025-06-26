@@ -15,16 +15,17 @@ export default function Task({ onAddTask }) {
       setTypeMessage(true);
       setMessage("Insira um valor válido");
       setDisabled(true);
-    } else if (input.length < 5) {
+    } else if (e.length < 5) {
       setError(true);
       setTypeMessage(true);
       setMessage("Insira no minimo 5 caracteres");
       setDisabled(true);
-    } else if (input.length > 50) {
+    } else if (e.length > 50) {
       setError(true);
       setTypeMessage(true);
       setMessage("Insira no maximo 50 caracteres");
       setDisabled(true);
+      console.log(e);
     } else {
       setError(false);
       setDisabled(false);
@@ -51,6 +52,8 @@ export default function Task({ onAddTask }) {
   return (
     <form className="form" onSubmit={handleSubmit} formNoValidate>
       <input
+        minLength={5}
+        maxLength={51}
         onChange={(e) => {
           setInput(e.target.value);
           isValid(e.target.value);
