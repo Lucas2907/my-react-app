@@ -1,3 +1,5 @@
+import options from "./../../../../assets/images/threeDotsVertical.svg";
+
 import { useState } from "react";
 
 export default function List({ infos }) {
@@ -22,11 +24,14 @@ export default function List({ infos }) {
             >
               {data.name}
             </p>
-            <input
-              className="list__checkbox"
-              type="checkbox"
-              onClick={() => changeCheck(data.id)}
-            ></input>
+            <div>
+              <input
+                className="list__checkbox"
+                type="checkbox"
+                onClick={() => changeCheck(data.id)}
+              ></input>
+              <img className="list__options" src={options}></img>
+            </div>
           </li>
         );
       })}

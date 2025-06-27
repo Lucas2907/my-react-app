@@ -1,6 +1,6 @@
 .popup__list {
   max-width: 65%;
-  overflow: auto;
+  overflow: hidden;
   height: 290px;
   font-family: "Teachers-Regular", sans-serif;
   font-weight: 300;
@@ -40,4 +40,18 @@
   height: 20px;
   cursor: pointer;
   margin-right: 10px;
+}
+
+.list__options {
+  width: 20px;
+  height: 20px;
+}
+
+.list__options:hover {
+  cursor: pointer;
+  opacity: 50%;
+}
+
+.list__options:active {
+  opacity: 30%;
 }
