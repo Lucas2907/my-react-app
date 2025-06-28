@@ -23,9 +23,8 @@ export default function Task({ onAddTask }) {
     } else if (e.length > 50) {
       setError(true);
       setTypeMessage(true);
-      setMessage("Insira no maximo 50 caracteres");
+      setMessage(" maximo 50 caracteres");
       setDisabled(true);
-      console.log(e);
     } else {
       setError(false);
       setDisabled(false);
@@ -40,11 +39,11 @@ export default function Task({ onAddTask }) {
       inputElement.value = "";
     } else {
       onAddTask(input);
-      setInput("");
       inputElement.value = "";
       setError(true);
       setTypeMessage(false);
-      setMessage("Inserido com sucesso");
+      setMessage(`Inserido com sucesso `);
+      setInput("");
       setDisabled(true);
     }
   }

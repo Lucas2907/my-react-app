@@ -1,9 +1,22 @@
-import options from "./../../../../assets/images/threeDotsVertical.svg";
+import optionsIcon from "./../../../../assets/images/optionsIcon.svg";
 
 import { useState } from "react";
+import PopupList from "./components/PopupList";
 
 export default function List({ infos }) {
   const [check, setCheck] = useState([]);
+  const [selectedPopup, setSelectedPopup] = useState();
+  const [isOpened, setIsOpened] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+  function changeState(dataId) {
+    if (dataId === selectedPopup) {
+      setSelectedPopup(dataId);
+      setIsOpened(!isOpened);
+    } else {
+      setIsOpened(true);
+      setSelectedPopup(dataId);
+    }
+  }
 
   function changeCheck(id) {
     if (check.includes(id)) {
@@ -24,13 +37,26 @@ export default function List({ infos }) {
             >
               {data.name}
             </p>
-            <div>
+            <div className="list__container">
               <input
                 className="list__checkbox"
                 type="checkbox"
                 onClick={() => changeCheck(data.id)}
-              ></input>
-              <img className="list__options" src={options}></img>
+              />
+              <div className="list__options">
+                <img
+                  className={`list__option ${
+                    data.id === selectedPopup && isOpened
+                      ? "list__option__clicked"
+                      : ""
+                  }`}
+                  src={optionsIcon}
+                  onClick={() => {
+                    changeState(data.id);
+                  }}
+                />
+                {data.id === selectedPopup && isOpened ? <PopupList /> : ""}
+              </div>
             </div>
           </li>
         );
