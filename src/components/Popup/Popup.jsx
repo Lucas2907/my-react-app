@@ -17,7 +17,6 @@ export default function Popup() {
   ]);
 
   function storeTask(newTask) {
-    console.log(newTask);
     setTask((task) => [{ name: newTask, id: task.length }, ...task]);
     newTask = "";
   }
