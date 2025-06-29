@@ -3,11 +3,11 @@ import optionsIcon from "./../../../../assets/images/optionsIcon.svg";
 import { useState } from "react";
 import PopupList from "./components/PopupList";
 
-export default function List({ infos }) {
+export default function List({ infos, onDeleteItem }) {
   const [check, setCheck] = useState([]);
   const [selectedPopup, setSelectedPopup] = useState();
   const [isOpened, setIsOpened] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
+  const ItemDeleted = true;
   function changeState(dataId) {
     if (dataId === selectedPopup) {
       setSelectedPopup(dataId);
@@ -16,6 +16,10 @@ export default function List({ infos }) {
       setIsOpened(true);
       setSelectedPopup(dataId);
     }
+  }
+
+  function deleteItem(data) {
+    ItemDeleted && onDeleteItem(data);
   }
 
   function changeCheck(id) {
@@ -55,7 +59,11 @@ export default function List({ infos }) {
                     changeState(data.id);
                   }}
                 />
-                {data.id === selectedPopup && isOpened ? <PopupList /> : ""}
+                {data.id === selectedPopup && isOpened ? (
+                  <PopupList onIconClick={() => deleteItem(data.id)} />
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </li>

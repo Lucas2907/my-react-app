@@ -1,10 +1,7 @@
 import pinIcon from "../../../../../assets/images/pinIcon.svg";
 import trashIcon from "../../../../../assets/images/trashIcon.svg";
-import closeButton from "../../../../../assets/images/plussign.svg";
 
-export default function PopupList() {
-
-  
+export default function PopupList({ onIconClick }) {
   return (
     <div className={`popup-list popup-list__active`}>
       <ul className="popup-list__items">
@@ -13,7 +10,7 @@ export default function PopupList() {
             <img className="popup-list__image" src={pinIcon} alt="pin icon" />
             <p className="popup-list__text">fix</p>
           </div>
-          <div className="popup-list__container">
+          <div className="popup-list__container" onClick={onIconClick}>
             <img className="popup-list__image" src={trashIcon} alt="pin icon" />
             <p className="popup-list__text">delete</p>
           </div>
@@ -22,3 +19,5 @@ export default function PopupList() {
     </div>
   );
 }
+
+//por algum motivo a função passado do List para o PopupList atraves da prop nao esta funcionando!

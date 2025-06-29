@@ -5,19 +5,23 @@ import List from "./components/List/List";
 import Task from "./components/task/task";
 import { useState } from "react";
 
+let counter = 0;
+
 export default function Popup() {
-  const [task, setTask] = useState([
-    { name: "Complete assigments", id: "0" },
-    { name: "Cook Dinner", id: "1" },
-    { name: "Buy Apple", id: "2" },
-    { name: "Meet Kelly", id: "3" },
-    { name: "Complete assigments", id: "4" },
-    { name: "Cook Dinner", id: "5" },
-    { name: "Buy Apple", id: "6" },
-  ]);
+  const [task, setTask] = useState([]);
+
+  function deleteTask(taskId) {
+    const arrCopy = task.filter((obj) => obj.id !== taskId);
+    setTask(arrCopy);
+  }
+
+  function generateId() {
+    console.log(counter);
+    return ++counter;
+  }
 
   function storeTask(newTask) {
-    setTask((task) => [{ name: newTask, id: task.length }, ...task]);
+    setTask((task) => [{ name: newTask, id: generateId() }, ...task]);
     newTask = "";
   }
 
@@ -26,7 +30,7 @@ export default function Popup() {
       <Date />
       <Line />
       <Header />
-      <List infos={task} />
+      <List infos={task} onDeleteItem={deleteTask} />
       <Task onAddTask={storeTask} />
     </div>
   );
