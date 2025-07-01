@@ -8,15 +8,31 @@ import { useState } from "react";
 let counter = 0;
 
 export default function Popup() {
-  const [task, setTask] = useState([]);
+  const [task, setTask] = useState([
+    {
+      name: "Task example",
+      id: -1,
+    },
+    {
+      name: "Macaquinho",
+      id: -2,
+    },
+  ]);
 
   function deleteTask(taskId) {
-    const arrCopy = task.filter((obj) => obj.id !== taskId);
-    setTask(arrCopy);
+    const taskCopy = task.filter((obj) => obj.id !== taskId);
+    setTask(taskCopy);
+  }
+
+  function fixTask(taskId) {
+    const taskPrepend = task.find((obj) => obj.id === taskId);
+    setTask([
+      { name: taskPrepend.name, id: taskId },
+      ...task.filter((obj) => obj.id != taskId),
+    ]);
   }
 
   function generateId() {
-    console.log(counter);
     return ++counter;
   }
 
@@ -30,8 +46,14 @@ export default function Popup() {
       <Date />
       <Line />
       <Header />
-      <List infos={task} onDeleteItem={deleteTask} />
+      <List infos={task} onDeleteItem={deleteTask} onFixItem={fixTask} />
       <Task onAddTask={storeTask} />
     </div>
   );
 }
+
+// ------- COISAS PARA RESOLVER --------
+
+// 2- FECHAR MINI POPUP QUANDO CLICK.TARGET != MINIPOPUP
+// 3- ARMAZENAR AS INFORAMAÇÕES EM ALGUM LUGAR(DATA STORAGE)
+// 4- TORNAR SITE RESPONSIVO
