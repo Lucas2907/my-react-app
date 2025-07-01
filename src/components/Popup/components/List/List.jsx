@@ -3,11 +3,10 @@ import optionsIcon from "./../../../../assets/images/optionsIcon.svg";
 import { useState } from "react";
 import PopupList from "./components/PopupList";
 
-export default function List({ infos, onDeleteItem }) {
+export default function List({ infos, onDeleteItem, onFixItem }) {
   const [check, setCheck] = useState([]);
   const [selectedPopup, setSelectedPopup] = useState();
-  const [isOpened, setIsOpened] = useState(false);
-  const ItemDeleted = true;
+  const [isOpened, setIsOpened] = useState();
   function changeState(dataId) {
     if (dataId === selectedPopup) {
       setSelectedPopup(dataId);
@@ -19,7 +18,13 @@ export default function List({ infos, onDeleteItem }) {
   }
 
   function deleteItem(data) {
-    ItemDeleted && onDeleteItem(data);
+    onDeleteItem(data);
+    setIsOpened(!isOpened);
+  }
+
+  function fixItem(data) {
+    onFixItem(data);
+    setIsOpened(!isOpened);
   }
 
   function changeCheck(id) {
@@ -60,7 +65,10 @@ export default function List({ infos, onDeleteItem }) {
                   }}
                 />
                 {data.id === selectedPopup && isOpened ? (
-                  <PopupList onIconClick={() => deleteItem(data.id)} />
+                  <PopupList
+                    onDeleteClick={() => deleteItem(data.id)}
+                    onFixClick={() => fixItem(data.id)}
+                  />
                 ) : (
                   ""
                 )}

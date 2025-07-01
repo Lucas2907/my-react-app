@@ -52,11 +52,15 @@
 
 .list__container {
   display: flex;
+  align-items: center;
 }
 
 .list__options {
   overflow: visible;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .list__option {
