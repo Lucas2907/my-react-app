@@ -1,9 +1,36 @@
 import pinIcon from "../../../../../assets/images/pinIcon.svg";
 import trashIcon from "../../../../../assets/images/trashIcon.svg";
 
-export default function PopupList({ onDeleteClick, onFixClick }) {
+import { useEffect, useRef } from "react";
+
+export default function PopupList({
+  onDeleteClick,
+  onFixClick,
+  onClose,
+  isOpen,
+}) {
+  
+  const ref = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        onClose();
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
   return (
-    <div className={`popup-list popup-list__active`}>
+    <div ref={ref} className={`popup-list popup-list__active`}>
       <ul className="popup-list__items">
         <li className="popup-list__item">
           <div className="popup-list__container" onClick={onFixClick}>

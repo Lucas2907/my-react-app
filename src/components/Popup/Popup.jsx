@@ -6,7 +6,6 @@ import Task from "./components/task/task";
 import { useState } from "react";
 
 let counter = 0;
-
 export default function Popup() {
   const [task, setTask] = useState([
     {
@@ -52,8 +51,6 @@ export default function Popup() {
   );
 }
 
-// ------- COISAS PARA RESOLVER --------
 
-// 2- FECHAR MINI POPUP QUANDO CLICK.TARGET != MINIPOPUP
 // 3- ARMAZENAR AS INFORAMAÇÕES EM ALGUM LUGAR(DATA STORAGE)
 // 4- TORNAR SITE RESPONSIVO

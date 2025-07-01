@@ -27,6 +27,10 @@ export default function List({ infos, onDeleteItem, onFixItem }) {
     setIsOpened(!isOpened);
   }
 
+  function closePopup() {
+    setIsOpened(!isOpened);
+  }
+
   function changeCheck(id) {
     if (check.includes(id)) {
       setCheck(check.filter((dataId) => dataId != id));
@@ -68,6 +72,8 @@ export default function List({ infos, onDeleteItem, onFixItem }) {
                   <PopupList
                     onDeleteClick={() => deleteItem(data.id)}
                     onFixClick={() => fixItem(data.id)}
+                    onClose={closePopup}
+                    isOpen={isOpened}
                   />
                 ) : (
                   ""
