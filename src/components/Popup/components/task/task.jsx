@@ -13,17 +13,17 @@ export default function Task({ onAddTask }) {
     if (e === "") {
       setError(true);
       setTypeMessage(true);
-      setMessage("Insira um valor válido");
+      setMessage("Enter a valid value");
       setDisabled(true);
     } else if (e.length < 5) {
       setError(true);
       setTypeMessage(true);
-      setMessage("Insira no minimo 5 caracteres");
+      setMessage("Enter at least 5 characters");
       setDisabled(true);
     } else if (e.length > 50) {
       setError(true);
       setTypeMessage(true);
-      setMessage(" maximo 50 caracteres");
+      setMessage("Enter a maximum of 50 characters");
       setDisabled(true);
     } else {
       setError(false);
@@ -42,7 +42,7 @@ export default function Task({ onAddTask }) {
       inputElement.value = "";
       setError(true);
       setTypeMessage(false);
-      setMessage(`Inserido com sucesso `);
+      setMessage(`Inserted successfully `);
       setInput("");
       setDisabled(true);
     }

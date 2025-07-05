@@ -3,13 +3,7 @@ import trashIcon from "../../../../../assets/images/trashIcon.svg";
 
 import { useEffect, useRef } from "react";
 
-export default function PopupList({
-  onDeleteClick,
-  onFixClick,
-  onClose,
-  isOpen,
-}) {
-  
+export default function PopupList({ onDeleteClick, onFixClick, onClose }) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -19,15 +13,15 @@ export default function PopupList({
       }
     }
 
-    if (isOpen) {
+    if (onClose) {
       document.addEventListener("mousedown", handleClickOutside);
     }
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isOpen, onClose]);
+  }, [onClose]);
 
-  if (!isOpen) return null;
+  if (!onClose) return null;
 
   return (
     <div ref={ref} className={`popup-list popup-list__active`}>

@@ -51,6 +51,6 @@ export default function Popup() {
   );
 }
 
-
+// 2- mini popup nao fecha quando aperta no icone de opções(!Isopened)
 // 3- ARMAZENAR AS INFORAMAÇÕES EM ALGUM LUGAR(DATA STORAGE)
 // 4- TORNAR SITE RESPONSIVO
