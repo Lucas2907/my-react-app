@@ -12,8 +12,8 @@ export default function List({ infos, onDeleteItem, onFixItem }) {
       setSelectedPopup(dataId);
       setIsOpened(!isOpened);
     } else {
-      setIsOpened(true);
       setSelectedPopup(dataId);
+      openPopup();
     }
   }
 
@@ -28,7 +28,11 @@ export default function List({ infos, onDeleteItem, onFixItem }) {
   }
 
   function closePopup() {
-    setIsOpened(!isOpened);
+    setIsOpened(false);
+  }
+
+  function openPopup() {
+    setIsOpened(true);
   }
 
   function changeCheck(id) {
@@ -40,6 +44,7 @@ export default function List({ infos, onDeleteItem, onFixItem }) {
   }
   return (
     <ul className="popup__list">
+      <h3 className="popup__title">TO DO LIST</h3>
       {infos.map((data) => {
         return (
           <li className={"list__items"} key={data.id}>
@@ -73,7 +78,6 @@ export default function List({ infos, onDeleteItem, onFixItem }) {
                     onDeleteClick={() => deleteItem(data.id)}
                     onFixClick={() => fixItem(data.id)}
                     onClose={closePopup}
-                    isOpen={isOpened}
                   />
                 ) : (
                   ""

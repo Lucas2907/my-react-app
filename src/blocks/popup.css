@@ -6,10 +6,18 @@
   align-items: center;
   background-color: aliceblue;
   border-radius: 15px;
-  width: 500px;
-  height: 650px;
+  min-height: 585px;
+  width: 450px;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 320px) and (max-width: 560px) {
+  .popup {
+    max-width: 90% ;
+    height: auto;
+    min-height: 527px;
+  }
 }
