@@ -3,20 +3,28 @@ import Line from "./components/Line/Line";
 import Header from "./components/Header/Header";
 import List from "./components/List/List";
 import Task from "./components/task/task";
-import { useState } from "react";
+import { setKey, getKey } from "../../utils/localStorage";
+import { useEffect, useState } from "react";
 
-let counter = 0;
 export default function Popup() {
-  const [task, setTask] = useState([
-    {
-      name: "Task example",
-      id: -1,
-    },
-    {
-      name: "Macaquinho",
-      id: -2,
-    },
-  ]);
+  const [counter, setCounter] = useState(() => {
+    const savedId = getKey("id");
+    return savedId && Number(savedId);
+  });
+
+  useEffect(() => {
+    setKey("id", counter);
+  }, [counter]);
+
+  
+  const [task, setTask] = useState(() => {
+    const savedName = getKey("name");
+    return savedName;
+  });
+
+  useEffect(() => {
+    setKey("name", task);
+  }, [task]);
 
   function deleteTask(taskId) {
     const taskCopy = task.filter((obj) => obj.id !== taskId);
@@ -32,9 +40,9 @@ export default function Popup() {
   }
 
   function generateId() {
-    return ++counter;
+    setCounter(counter + 1);
+    return counter;
   }
-
   function storeTask(newTask) {
     setTask((task) => [{ name: newTask, id: generateId() }, ...task]);
     newTask = "";
