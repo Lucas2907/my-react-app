@@ -1,12 +1,22 @@
 import optionsIcon from "./../../../../assets/images/optionsIcon.svg";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PopupList from "./components/PopupList";
+import { setKey, getKey } from "../../../../utils/localStorage";
 
 export default function List({ infos, onDeleteItem, onFixItem }) {
-  const [check, setCheck] = useState([]);
+  const [check, setCheck] = useState(() => {
+    const savedCheck = getKey("checked");
+    return savedCheck || [];
+  });
+
+  useEffect(() => {
+    setKey("checked", check);
+  }, [check]);
+
   const [selectedPopup, setSelectedPopup] = useState();
   const [isOpened, setIsOpened] = useState();
+
   function changeState(dataId) {
     if (dataId === selectedPopup) {
       setSelectedPopup(dataId);
@@ -45,6 +55,7 @@ export default function List({ infos, onDeleteItem, onFixItem }) {
   return (
     <ul className="popup__list">
       <h3 className="popup__title">TO DO LIST</h3>
+
       {infos.map((data) => {
         return (
           <li className={"list__items"} key={data.id}>
@@ -57,6 +68,7 @@ export default function List({ infos, onDeleteItem, onFixItem }) {
             </p>
             <div className="list__container">
               <input
+                checked={check.includes(data.id) ? true : false}
                 className="list__checkbox"
                 type="checkbox"
                 onClick={() => changeCheck(data.id)}

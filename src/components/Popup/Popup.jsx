@@ -16,10 +16,9 @@ export default function Popup() {
     setKey("id", counter);
   }, [counter]);
 
-  
   const [task, setTask] = useState(() => {
     const savedName = getKey("name");
-    return savedName;
+    return savedName || [{ name: "Task Example", id: generateId() }];
   });
 
   useEffect(() => {
